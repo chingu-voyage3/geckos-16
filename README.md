@@ -5,3 +5,4 @@ Task: Each member to create their initial commit to the repo by adding their nam
 Members:
 
   * [Toni Gibbons](https://github.com/8thDay)
+  * [miku86] (https://github.com/miku86)
