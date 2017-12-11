@@ -6,4 +6,5 @@ Members:
 
   * [Toni Gibbons](https://github.com/8thDay)
   * [miku86](https://github.com/miku86)
+  * [Stav Cohen](https://github.com/StavC)
   
