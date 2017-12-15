@@ -3,7 +3,7 @@ const bodyParser = require("body-parser");
 const MongoClient = require("mongodb").MongoClient;
 
 const app = express();
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 const dbURL =
   "mongodb://gecko16:gecko16rulez@ds157158.mlab.com:57158/meeting-planner-mvp";
 var db;
@@ -16,7 +16,7 @@ MongoClient.connect(dbURL, (err, database) => {
   if (err) return console.log(err);
   db = database;
   app.listen(PORT, () => {
-    console.log(`Server running on Port ${PORT}`);
+    console.log(`Listening on Port ${PORT}`);
   });
 });
 
