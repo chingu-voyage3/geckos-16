@@ -11,6 +11,8 @@ var db;
 app.set("view engine", "ejs");
 
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use("/assets", express.static(__dirname + "/assets"));
+
 
 MongoClient.connect(dbURL, (err, database) => {
   if (err) return console.log(err);
