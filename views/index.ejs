@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Meeting Planner</title>
+</head>
+
+<body>
+  Welcome to Meeting Planner - MVP
+</body>
+
+<ul class="meetings">
+  <% for(var i=0; i<meetings.length; i++) {%>
+    <li class="meeting">
+      <span>
+        <%= meetings[i].title %>
+      </span>
+      <span>
+        <%= meetings[i].desc %>
+      </span>
+    </li>
+    <% } %>
+</ul>
+
+<form action="/meetings" method="POST">
+  <input type="text" placeholder="title" name="title">
+  <input type="text" placeholder="desc" name="desc">
+  <button type="submit">Submit</button>
+</form>
+
+</html>
