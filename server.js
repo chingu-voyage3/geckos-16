@@ -1,42 +1,42 @@
-const express = require("express");
-const bodyParser = require("body-parser");
-const MongoClient = require("mongodb").MongoClient;
+// server.js
 
-const app = express();
-const PORT = process.env.PORT || 3000;
-const dbURL =
-  "mongodb://gecko16:gecko16rulez@ds157158.mlab.com:57158/meeting-planner-mvp";
-var db;
+// set up ======================================================================
+// get all the tools we need
+var express  = require('express');
+var app      = express();
+var port     = process.env.PORT || 8080;
+var mongoose = require('mongoose');
+var passport = require('passport');
+var flash    = require('connect-flash');
 
-app.set("view engine", "ejs");
+var morgan       = require('morgan');
+var cookieParser = require('cookie-parser');
+var bodyParser   = require('body-parser');
+var session      = require('express-session');
 
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use("/assets", express.static(__dirname + "/assets"));
+var configDB = require('./config/database.js');
 
+// configuration ===============================================================
+mongoose.connect(configDB.url); // connect to our database
 
-MongoClient.connect(dbURL, (err, database) => {
-  if (err) return console.log(err);
-  db = database;
-  app.listen(PORT, () => {
-    console.log(`Listening on Port ${PORT}`);
-  });
-});
+ require('./config/passport')(passport); // pass passport for configuration
 
-app.get("/", function(req, res) {
-  db
-    .collection("meetings")
-    .find()
-    .toArray(function(err, result) {
-      if (err) return console.log(err);
-      res.render("index.ejs", { meetings: result });
-    });
-});
+// set up our express application
+app.use(morgan('dev')); // log every request to the console
+app.use(cookieParser()); // read cookies (needed for auth)
+app.use(bodyParser()); // get information from html forms
 
-app.post("/meetings", (req, res) => {
-  db.collection("meetings").save(req.body, (err, result) => {
-    if (err) return console.log(err);
+app.set('view engine', 'ejs'); // set up ejs for templating
 
-    console.log("saved to database");
-    res.redirect("/");
-  });
-});
+// required for passport
+app.use(session({ secret: 'stav' })); // session secret
+app.use(passport.initialize());
+app.use(passport.session()); // persistent login sessions
+app.use(flash()); // use connect-flash for flash messages stored in session
+
+// routes ======================================================================
+require('./app/routes.js')(app, passport); // load our routes and pass in our app and fully configured passport
+
+// launch ======================================================================
+app.listen(port);
+console.log('The magic happens on port ' + port);
