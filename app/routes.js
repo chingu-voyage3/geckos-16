@@ -9,9 +9,22 @@ module.exports = function(app, passport) {
   });
 
   // =====================================
-  // LOGIN ===============================
+  // CREATE A MEETING ====================
   // =====================================
-  // show the login form
+  app.get("/create", function(req, res) {
+    res.render("create.ejs");
+  });
+
+  // =====================================
+  // LIST MEETINGS =======================
+  // =====================================
+  app.get("/list", function(req, res) {
+    res.render("list.ejs");
+  });
+
+  // =====================================
+  // LOGIN (show the login form) =========
+  // =====================================
   app.get("/login", function(req, res) {
 
     // render the page and pass in any flash data if it exists
@@ -26,9 +39,8 @@ module.exports = function(app, passport) {
   }));
 
   // =====================================
-  // SIGNUP ==============================
+  // SIGNUP (show the signup form) =======
   // =====================================
-  // show the signup form
   app.get("/signup", function(req, res) {
 
     // render the page and pass in any flash data if it exists
