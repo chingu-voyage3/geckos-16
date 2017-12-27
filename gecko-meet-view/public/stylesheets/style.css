@@ -1,0 +1,95 @@
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+html {
+    height: 100%;
+    box-sizing: border-box;
+  }
+body {
+    min-height: 100%;
+    box-sizing: border-box;
+    background-color: #F5F5F5;
+    position: relative;
+    margin: 0;
+  
+}
+div {
+    display: block;
+}
+
+header {
+    padding: 10px 0;
+    width: 100%;
+    background-color: #28A745;
+    color: #fff;
+}
+
+
+
+.navbar-collapse {
+    -ms-flex-preferred-size: 100%;
+    flex-basis: 100%;
+    -ms-flex-positive: 1;
+    flex-grow: 1;
+    -ms-flex-align: center;
+    align-items: center;
+}
+
+.collapse {
+    display: none;
+}
+
+.offset-header {
+    padding: 70px 0;
+}
+
+#home-page {
+    padding: 100px 0;
+    background-color: #28A745;
+}
+.welcome {
+    padding-bottom: 30px;
+    color: #fff;
+}
+
+#meeting-form {
+    padding: 50px 0;
+}
+
+#list-meetings {
+    padding: 50px 0 100px 0;
+}
+
+#info {
+    padding: 30px 0;
+}
+
+.inner-insert .inner {
+    max-width: 800px;
+    padding: 20px 30px 5px 20px;
+}
+.inner {
+    background-color: #fff;
+}   
+
+.inner-insert .list {
+    padding:20px;
+}
+
+footer {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 60px;
+    line-height: 60px;
+    background-color: #28A745;
+    color: #fff;
+}
+
+.footer-space {
+    margin-bottom: 0px;
+}

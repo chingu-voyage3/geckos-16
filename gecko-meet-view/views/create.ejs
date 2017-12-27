@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <% include ./layouts/head %>
+    </head>
+    <body>
+        <header>
+            <% include ./layouts/header %>
+        </header>
+       <section id="meeting-form">
+        <div class="inner-insert container">
+         <div class="inner container">
+            <h2 class="text-center">Enter your meeting details</h2>
+            <form action="/create" method="POST">
+                <div class="form-group row">
+                    <label class="col-form-label col-sm-2" for="title">Title:</label>
+                    <input type="text" class="form-control col-sm-10" name="title" placeholder="Title">
+                </div>
+                <div class="form-group row">
+                        <label class="col-form-label col-sm-2" for="description">Description:</label>
+                        <textarea type="text" class="form-control col-sm-10" rows="6" name="description" placeholder="Description"></textarea>
+                </div>
+                <div class="form-group row">
+                        <label class="col-form-label col-sm-2" for="location">Location:</label>
+                        <input type="text" class="form-control col-sm-10" name="location" placeholder="Location">
+                </div>
+                <div class="form-group row">
+                        <label class="col-form-label col-sm-2" for="time">Date & time:</label>
+                        <input type="text" class="form-control col-sm-10" name="time" placeholder="Date & Time">
+                </div>
+                <div class="form-group row justify-content-end">
+                        <button type="submit" class="btn btn-success ">Submit</button>
+                </div>
+            </form>
+         </div>
+        </div>
+       </section>
+        <footer>
+            <% include ./layouts/footer %>
+        </footer>
+    </body>
+</html>
