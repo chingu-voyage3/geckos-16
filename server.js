@@ -5,7 +5,7 @@ const MongoClient = require("mongodb").MongoClient;
 const app = express();
 const PORT = process.env.PORT || 3000;
 const dbURL =
-  "mongodb://gecko16:gecko16rulez@ds157158.mlab.com:57158/meeting-planner-mvp";
+  "mongodb://xxx:xxx@ds157158.mlab.com:57158/meeting-planner-mvp";
 var db;
 
 app.set("view engine", "ejs");
