@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <% include ../partials/head %>
+  </head>
+  <body>
+    <header>
+      <% include ../partials/header %>
+    </header>
+    <section id="home-page">
+      <div class="container text-center offset-header">
+        <div class="col-sm-6 col-sm-offset-3">
+        
+          <div class="col-sm-6 col-sm-offset-3">
+                
+            <h1><span class="fa fa-sign-in"></span> Sign Up</h1>
+        
+            <!-- show any messages that come back with authentication -->
+            <% if (messages.length > 0) { %>
+              <div class="alert alert-danger"><%= messages %></div>
+            <% } %>
+
+            <!-- LOGIN FORM -->
+            <form action="signup" method="post">
+              <div class="form-group">
+                <label for="email">Email</label>
+                <input type="text" id="email" class="form-control" name="email">
+              </div>
+              <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" class="form-control" name="password">
+              </div>
+              <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+              <button type="submit" class="btn btn-warning btn-lg">Sign Up</button>
+            </form>
+            <hr>
+        
+            <p>Already have an account? <a href="/login">Login</a></p>
+            <p>Or go <a href="/">home</a>.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+    <footer>
+      <% include ../partials/footer %>
+    </footer>
+    <% include ../partials/scripts %>
+   </body>
+</html>
