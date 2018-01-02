@@ -36,6 +36,17 @@ passport.use("local-signup", new LocalStrategy({
   passReqToCallback: true // allows us to pass back the entire request to the callback
 }, 
 (req, email, password, done) => {
+  // use express-validator methods to validate input
+  req.checkBody("email", "Invalid email address").notEmpty().isEmail();
+  req.checkBody("password", "Invalid password").notEmpty().isLength({min:4});
+  let errors = req.validationErrors();
+  if (errors) {
+    let messages = [];
+    errors.forEach((error) => {
+      messages.push(error.msg);
+    });
+    return done(null, false, req.flash("error", messages));
+  }
 
   User.findOne({"local.email": email}, (err, user) => {
     if (err) {

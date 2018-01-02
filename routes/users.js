@@ -18,7 +18,7 @@ router.post("/signup", passport.authenticate("local-signup", {
 }));
 
 router.get("/profile", (req, res, next) => {
-  res.router("user/profile");
+  res.render("user/profile");
 });
 
 /* GET users listing. */
