@@ -15,7 +15,8 @@ const app = express();
 // connect to db
 mongoose.connect(dbURL);
 
-require("config/passport");
+/* pass passport for configuration */
+require('./config/passport')(passport);
 
 // view engine setup
 app.set("view engine", "ejs");
