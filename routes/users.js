@@ -21,6 +21,17 @@ router.get("/profile", (req, res, next) => {
   res.render("user/profile");
 });
 
+router.get("/login", (req, res, next) => {
+  let messages = req.flash("error");
+  res.render("user/login", {csrfToken: req.csrfToken(), title: "GeckoMeet Signin", messages: messages});
+});
+
+router.post("/login", passport.authenticate("local-login", {
+  successRedirect: "/profile",
+  failureRedirect: "/login",
+  failureFlash: true
+}));
+
 /* GET users listing. */
 //router.get('/', function(req, res, next) {
 //  res.send('respond with a resource');
