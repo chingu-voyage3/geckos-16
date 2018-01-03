@@ -31,6 +31,14 @@ app.use(flash());
 app.use(passport.initialize());
 app.use(passport.session());
 
+// create "login" global variable for use in views
+// this must come after passport setup
+app.use(function(req, res, next) {
+  res.locals.login = req.isAuthenticated();
+  res.locals.user = req.user;
+  next();
+});
+
 // define routes
 app.use(require("./routes/index"));
 app.use(require("./routes/meetings"));
