@@ -12,7 +12,11 @@
         <h1 class="welcome">
           <span class="highlight">Welcome to GeckoMeet!</span>
         </h1>
-        <a href='/create' role="button" class="btn btn-outline-light">GET STARTED</a>
+        <% if (login) { %>
+          <a href='/create' role="button" class="btn btn-outline-light">GET STARTED</a>
+        <% } else { %>
+          <a href='/signup' role="button" class="btn btn-outline-light">GET STARTED</a>
+        <% } %>
       </div>
     </section>
     <section id="info">

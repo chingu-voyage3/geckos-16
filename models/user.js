@@ -5,17 +5,17 @@ const bcrypt = require('bcrypt-nodejs');
 // define the schema for our user model
 const userSchema = new Schema({
 
-  local : {
+  local: {
     email: {type: String, required: true},
     password: {type: String, required: true}
   },
-  facebook : {
+  facebook: {
     id           : String,
     token        : String,
     name         : String,
     email        : String
   },
-  google : {
+  google: {
     id           : String,
     token        : String,
     email        : String,
