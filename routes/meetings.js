@@ -35,17 +35,36 @@ router.post("/edit", isLoggedIn, (req, res, next) => {
   res.redirect("meetings");
 });
 
-router.post("/delete", isLoggedIn, (req, res, next) => {
-  var id = req.body.id;
-  Meeting.findByIdAndRemove(id).exec();
-  res.redirect("meetings");
+router.get("/meeting/:id/delete", isLoggedIn, (req, res, next) => {
+  Meeting.findById(req.params.id)
+  .then(function(results) {
+    res.render("delete", {title: "Delete Meeting", meeting: results});
+  });
+});
+
+router.get("/meeting/delete/:id", isLoggedIn, (req, res, next) => {
+  let id = req.params.id;
+  Meeting.findByIdAndRemove({_id: id}, function(err) {
+    if (err) {
+      console.log(err);
+      return res.status(500).send();
+    }
+    res.redirect("/meetings");
+  });
 });
 
 router.get("/meetings", isLoggedIn, (req, res, next) => {
-  Meeting.find({ creator: req.user.id })
+  Meeting.find({creator: req.user.id})
   .then(function(results) {
-    res.render("meetings", {title: "GeckoMeet - Current Meetings", meetings: results})
+    res.render("meetings", {title: "GeckoMeet - Current Meetings", meetings: results});
   });
+});
+
+router.get("/meeting/:id", (req, res, next) => {
+  Meeting.findById(req.params.id)
+  .then(function(results) {
+    res.render("meeting", {title: results.title, meeting: results});
+  })
 });
 
 module.exports = router;

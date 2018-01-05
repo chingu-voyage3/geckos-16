@@ -15,7 +15,7 @@
             <% if (meetings.length > 0) { %>
               <% meetings.forEach(function(meetings) { %>
                 <li class="list-group-item">
-                  <a href="#" class="btn btn-link text-dark">
+                  <a href="<%= meetings.url %>" class="text-dark">
                     <h4><%= meetings.title %></h4>
                     <p><%= meetings.description %></p>
                     <p><%= meetings.location %></p>

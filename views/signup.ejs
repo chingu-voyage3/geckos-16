@@ -7,39 +7,41 @@
     <header>
       <% include partials/header %>
     </header>
-    <section id="home-page">
-      <div class="container text-center offset-header">
-        <div class="col-sm-6 col-sm-offset-3">
-        
-          <div class="col-sm-6 col-sm-offset-3">
-                
-            <h1><span class="fa fa-sign-in"></span> Sign Up</h1>
-        
-            <!-- show any messages that come back with authentication -->
-            <% if (messages.length > 0) { %>
-              <% messages.forEach(function(message) {%>
-                <div class="alert alert-danger"><%= message %></div>
-              <% }); %>
-            <% } %>
+    <section id="signup">
+      <div class="inner-insert container">
+        <div class="inner container">
 
-            <!-- LOGIN FORM -->
-            <form action="signup" method="post">
-              <div class="form-group">
-                <label for="email">Email</label>
-                <input type="text" id="email" class="form-control" name="email">
+          <h2 class="text-center"><span class="fa fa-sign-in" aria-hidden="true"></span> Sign Up</h2>
+
+          <!-- show any messages that come back with authentication -->
+          <% if (messages.length > 0) { %>
+            <% messages.forEach(function(message) {%>
+              <div class="alert alert-danger">
+                <%= message %>
               </div>
-              <div class="form-group">
-                <label for="password">Password</label>
-                <input type="password" id="password" class="form-control" name="password">
-              </div>
-              <input type="hidden" name="_csrf" value="<%= csrfToken %>">
-              <button type="submit" class="btn btn-warning btn-lg">Sign Up</button>
-            </form>
-            <hr>
-        
-            <p>Already have an account? <a href="login">Login</a></p>
-            <p>Or go <a href="/">home</a>.</p>
+            <% }); %>
+          <% } %>
+
+          <form action="signup" method="post">
+            <div class="form-group row">
+              <label for="email" class="col-form-label col-sm-2">Email:</label>
+              <input type="email" id="email" name="email" placeholder="Email" class="form-control col-sm-10">
+            </div>
+            <div class="form-group row">
+              <label for="password" class="col-form-label col-sm-2">Password:</label>
+              <input type="password" id="password" name="password" placeholder="Password" class="form-control col-sm-10">
+            </div>
+            <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+          <div class="form-group row justify-content-end">
+            <button type="submit" class="btn btn-success">Sign Up</button>
           </div>
+          </form>
+
+          <hr>
+
+          <p>Already have an account? <a href="login">Login</a></p>
+          <p>Or go back to the <a href="/">Home page</a>.</p>
+          
         </div>
       </div>
     </section>

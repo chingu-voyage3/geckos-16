@@ -7,21 +7,21 @@
     <header>
       <% include partials/header %>
     </header>
-    <section id="delete-meeting">
+    <section id="meeting-detail" class="meeting-detail">
       <div class="inner-insert container text-center">
         <div class="inner container list">
+          <div class="edit-del">
+            <a href="/edit" class="edit"><span class="fa fa-pencil fa-lg" title="Edit meeting"></span></a>
+            <a href="<%= meeting.durl %>" class="delete"><span class="fa fa-trash-o fa-lg" title="Delete meeting"></span></a>
+          </div>
           <h2><%= meeting.title %></h2>
           <p>
             <p><%= meeting.description %></p>
             <p><%= meeting.location %></p>
             <p><%= meeting.time %></p>
           </p>
-          <div>
-            <p>Are you sure you want to delete this meeting?</p>
-            <div class="edit-del">
-              <a href="/meeting/delete/<%= meeting._id %>" class="btn btn-danger" role="button">Delete</a>
-              <a href="<%= meeting.url %>" class="btn btn-secondary" role="button">Cancel</a>
-            </div>
+          <div class="back">
+            <a href="/meetings" class="text-dark"><span class="fa fa-arrow-left"></span> Back to list</a>
           </div>
         </div>
       </div>

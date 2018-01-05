@@ -12,7 +12,7 @@ router.get("/signup", notLoggedIn, function (req, res, next) {
 });
 
 router.post("/signup", notLoggedIn, passport.authenticate("local-signup", {
-  successRedirect: "profile",
+  successRedirect: "create",
   failureRedirect: "signup",
   failureFlash: true
 }));
@@ -23,7 +23,7 @@ router.get("/login", notLoggedIn, (req, res, next) => {
 });
 
 router.post("/login", notLoggedIn, passport.authenticate("local-login", {
-  successRedirect: "profile",
+  successRedirect: "meetings",
   failureRedirect: "login",
   failureFlash: true
 }));

@@ -9,11 +9,18 @@ const meetingSchema = new Schema({
   time: {type: String, required: false}
 });
 
+// Virtual for meeting's delete URL
+meetingSchema
+.virtual("durl")
+.get(function () {
+  return "/meeting/" + this._id + "/delete";
+});
+
 // Virtual for meeting's URL
 meetingSchema
-.virtual('url')
+.virtual("url")
 .get(function () {
-  return '/meeting/' + this._id;
+  return "/meeting/" + this._id;
 });
 
 // create the model for meetings and expose it to our app

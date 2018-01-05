@@ -28,6 +28,15 @@ header {
   color: #fff;
 }
 
+header h1 {
+  color: #fff;
+  font-size: 2rem;
+}
+
+.navbar-dark .navbar-nav .nav-link {
+  color: #fff;
+}
+
 .navbar-collapse {
   -ms-flex-preferred-size: 100%;
   flex-basis: 100%;
@@ -52,9 +61,14 @@ header {
 .welcome {
   padding-bottom: 30px;
   color: #fff;
+  font-size: 2.5rem;
 }
 
-#meeting-form {
+#create-meeting,
+#meeting-detail,
+#delete-meeting,
+#signup,
+#login {
   padding: 50px 0;
 }
 
@@ -62,14 +76,37 @@ header {
   padding: 50px 0 100px 0;
 }
 
+.meeting-detail .edit-del {
+  text-align: right;  
+}
+
+.meeting-detail .edit,
+.meeting-detail .delete {
+  padding: .5rem;
+}
+
+.meeting-detail .edit .fa:before {
+  color: #000;
+}
+
+.meeting-detail .delete .fa:before {
+  color: #f00;
+}
+
+.meeting-detail .back {
+  text-align: left;  
+}
+
 #info {
   padding: 30px 0;
+  min-height: 260px;
 }
 
 .inner-insert .inner {
   max-width: 800px;
   padding: 20px 30px 5px 20px;
 }
+
 .inner {
   background-color: #fff;
 }   
@@ -84,12 +121,7 @@ footer {
   bottom: 0;
   left: 0;
   width: 100%;
-  height: 60px;
   line-height: 60px;
   background-color: #28A745;
   color: #fff;
-}
-
-.footer-space {
-  margin-bottom: 0px;
 }
