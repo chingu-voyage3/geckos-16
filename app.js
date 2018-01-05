@@ -6,9 +6,9 @@ const session = require("express-session");
 const passport = require("passport");
 const flash = require("connect-flash");
 const expressValidator = require("express-validator");
-const PORT = process.env.PORT || 3000;
-const dbURL = process.env.MONGODB_URI || require("./config/database").url;
-const sessionSecret = process.env.SESSION || require("./config/session").secret;
+const PORT = process.env.PORT;
+const dbURL = process.env.MONGODB_URI;
+const sessionSecret = process.env.SESSION;
 
 const app = express();
 
