@@ -6,11 +6,14 @@ const session = require("express-session");
 const passport = require("passport");
 const flash = require("connect-flash");
 const expressValidator = require("express-validator");
+
+const app = express();
+
+// load environment variables
+require('dotenv').config();
 const PORT = process.env.PORT;
 const dbURL = process.env.MONGODB_URI;
 const sessionSecret = process.env.SESSION;
-
-const app = express();
 
 // connect to db
 mongoose.connect(dbURL);
