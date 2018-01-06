@@ -10,7 +10,7 @@ const expressValidator = require("express-validator");
 const app = express();
 
 // load environment variables
-require('dotenv').config();
+if (process.env.NODE_ENV !== 'production') require('dotenv').config();
 const PORT = process.env.PORT;
 const dbURL = process.env.MONGODB_URI;
 const sessionSecret = process.env.SESSION;
