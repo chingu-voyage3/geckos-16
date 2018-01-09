@@ -16,7 +16,9 @@ const dbURL = process.env.MONGODB_URI;
 const sessionSecret = process.env.SESSION;
 
 // connect to db
-mongoose.connect(dbURL);
+mongoose.connect(dbURL)
+.then(() => { console.log("MongoDB connected...")})
+.catch(err => console.log("Error connecting to database: " + err));
 
 /* pass passport for configuration */
 require('./config/passport')(passport);
