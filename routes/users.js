@@ -30,6 +30,16 @@ router.post("/login", notLoggedIn, passport.authenticate("local-login", {
   failureFlash: true
 }));
 
+// FACEBOOK
+router.get("/auth/facebook", passport.authenticate("facebook", {
+  scope: ["email"]
+}));
+
+router.get("/auth/facebook/oauthcallback", passport.authenticate("facebook", {
+  successRedirect: "/meetings",
+  failureRedirect: "/login"
+}));
+
 // LOGOUT
 router.get("/logout", isLoggedIn, (req, res, next) => {
   req.logout();

@@ -6,14 +6,14 @@ const bcrypt = require('bcrypt-nodejs');
 const userSchema = new Schema({
 
   local: {
-    email: {type: String, required: true},
-    password: {type: String, required: true}
+    email: String,
+    password: String
   },
   facebook: {
-    id           : String,
-    token        : String,
-    name         : String,
-    email        : String
+    id: String,
+    token: String,
+    name: String,
+    email: String
   },
   google: {
     id           : String,
