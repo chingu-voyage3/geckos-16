@@ -8,10 +8,16 @@
       <% include partials/header %>
     </header>
     <section id="profile">
-      <div class="container text-center offset-header">
-        <h1 class="welcome">
-          <span class="highlight">Your Account</span>
-        </h1>
+      <div class="inner-insert container">
+        <div class="inner container">
+          <h2 class="text-center">
+            <span class="fa fa-user" aria-hidden="true"></span> Your Profile
+          </h2>
+          <h3>Local Login</h3>
+          <ul>
+            <li><strong>email: </strong><%= user.local.email %></li>
+          </ul>
+        </div>
       </div>
     </section>
     

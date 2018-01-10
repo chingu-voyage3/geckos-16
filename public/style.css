@@ -68,7 +68,8 @@ header h1 {
 #meeting-detail,
 #delete-meeting,
 #signup,
-#login {
+#login.
+#profile {
   padding: 50px 0;
 }
 
