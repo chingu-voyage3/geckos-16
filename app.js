@@ -1,5 +1,6 @@
 const express = require("express");
 const path = require("path");
+const cookieParser = require("cookie-parser");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const session = require("express-session");
@@ -29,6 +30,7 @@ app.set("views", path.join(__dirname, "views"));
 
 // use middleware
 app.use(express.static(path.join(__dirname, "public")));
+app.use(cookieParser());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(expressValidator()); // Add this after the bodyParser middleware
 app.use(session({secret: sessionSecret, resave: false, saveUninitialized: false}));

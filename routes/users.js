@@ -6,9 +6,10 @@ const passport = require("passport");
 const csrfProtection = csrf(); // start Cross-Site Request Forgery protection
 router.use(csrfProtection);
 
+// SIGNUP
 router.get("/signup", notLoggedIn, function (req, res, next) {
   let messages = req.flash("error");
-  res.render("signup", {csrfToken: req.csrfToken(), title: "GeckoMeet Signup", messages: messages});
+  res.render("signup", {csrfToken: req.csrfToken(), title: "GeckoMeet - Signup", messages: messages});
 });
 
 router.post("/signup", notLoggedIn, passport.authenticate("local-signup", {
@@ -17,9 +18,10 @@ router.post("/signup", notLoggedIn, passport.authenticate("local-signup", {
   failureFlash: true
 }));
 
+// LOGIN
 router.get("/login", notLoggedIn, (req, res, next) => {
   let messages = req.flash("error");
-  res.render("login", {csrfToken: req.csrfToken(), title: "GeckoMeet Signin", messages: messages});
+  res.render("login", {csrfToken: req.csrfToken(), title: "GeckoMeet - Signin", messages: messages});
 });
 
 router.post("/login", notLoggedIn, passport.authenticate("local-login", {
@@ -28,22 +30,25 @@ router.post("/login", notLoggedIn, passport.authenticate("local-login", {
   failureFlash: true
 }));
 
+// LOGOUT
 router.get("/logout", isLoggedIn, (req, res, next) => {
   req.logout();
   res.redirect("/");
 });
 
+// PROFILE
 router.get("/profile", isLoggedIn, (req, res, next) => {
-  res.render("profile", {title: "Your Account"});
+  res.render("profile", {title: "GeckoMeet - Your Account"});
 });
 
 module.exports = router;
 
+// Middleware
 function isLoggedIn(req, res, next) {
   if (req.isAuthenticated()) {
     return next();
   }
-  res.redirect("/");
+  res.redirect("/login");
 }
 
 function notLoggedIn(req, res, next) {
