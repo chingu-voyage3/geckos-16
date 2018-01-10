@@ -127,8 +127,6 @@ module.exports = function(passport) {
     })
   }));
 
-
-
   // =============================================================================
   // ## FACEBOOK LOGIN ##
   // =============================================================================
@@ -173,7 +171,48 @@ module.exports = function(passport) {
         }
       });
     });
+  }));
 
+  // =============================================================================
+  // ## GOOGLE LOGIN ##
+  // =============================================================================
+
+  passport.use(new GoogleStrategy({
+    clientID: process.env.GOOGLE_CLIENT_ID,
+    clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+    callbackURL: process.env.GOOGLE_CALLBACK_URL,
+    passReqToCallback : true // allows us to pass back the entire request to the callback
+  },
+  (req, accessToken, refreshToken, profile, done) => {
+    User.findOne({"google.id": profile.id}, function (err, user) {
+      // if there is an error, stop everything and return that
+      // ie an error connecting to the database
+      if (err) {
+        return done(err);
+      }
+      // if the user is found, then log them in
+      if (user) {
+        return done(null, user); // user found, return that user
+      }
+      else {
+        // if there is no user found with that google id, create one
+        const newUser = new User();
+        // set all of the google information in our user model
+        newUser.google.id = profile.id;
+        newUser.google.token = accessToken;
+        newUser.google.name = profile.displayName;
+        newUser.google.email = profile.emails[0].value; // facebook can return multiple emails so we'll take the first
+
+        // save our user to the database
+        newUser.save(function(err) {
+          if (err) {
+            throw err;
+          }
+          // if successful, return the new user
+          return done(null, newUser);
+        });
+      }
+    });
   }));
 
 };

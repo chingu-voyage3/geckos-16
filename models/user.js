@@ -16,10 +16,10 @@ const userSchema = new Schema({
     email: String
   },
   google: {
-    id           : String,
-    token        : String,
-    email        : String,
-    name         : String
+    id: String,
+    token: String,
+    name: String,
+    email: String
   }
 
 });

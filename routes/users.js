@@ -40,6 +40,16 @@ router.get("/auth/facebook/oauthcallback", passport.authenticate("facebook", {
   failureRedirect: "/login"
 }));
 
+// GOOGLE
+router.get("/auth/google", passport.authenticate("google", {
+  scope: ["openid", "profile", "email"]
+}));
+
+router.get("/auth/google/oauth2callback", passport.authenticate("google", {
+  successRedirect: "/meetings",
+  failureRedirect: "/login"
+}));
+
 // LOGOUT
 router.get("/logout", isLoggedIn, (req, res, next) => {
   req.logout();
