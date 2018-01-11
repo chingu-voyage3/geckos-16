@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <% include partials/head %>
+  </head>
+  <body>
+    <header>
+      <% include partials/header %>
+    </header>
+    <section id="profile">
+      <div class="inner-insert container">
+        <div class="inner container">
+          <h2 class="text-center">
+            <span class="fa fa-user" aria-hidden="true"></span> Your Profile
+          </h2>
+          <h3>Local Login</h3>
+          <ul>
+            <li><strong>email: </strong><%= user.local.email %></li>
+          </ul>
+          <h3>Facebook</h3>
+          <ul>
+            <li><strong>name: </strong><%= user.facebook.name %></li>
+            <li><strong>email: </strong><%= user.facebook.email %></li>
+          </ul>
+          <h3>Google</h3>
+          <ul>
+            <li><strong>name: </strong><%= user.google.name %></li>
+            <li><strong>email: </strong><%= user.google.email %></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+    
+    <footer>
+        <% include partials/footer %>
+    </footer>
+    <% include partials/scripts %>
+   </body>
+</html>

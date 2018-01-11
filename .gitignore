@@ -1,0 +1,5 @@
+.env
+/archive
+/node_modules
+/config/database.js
+/config/session.js
