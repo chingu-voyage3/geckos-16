@@ -2,6 +2,8 @@ const express = require("express");
 const router = express.Router();
 const csrf = require("csurf");
 const passport = require("passport");
+const isLoggedIn = require("../middleware").isLoggedIn;
+const notLoggedIn = require("../middleware").notLoggedIn;
 
 const csrfProtection = csrf(); // start Cross-Site Request Forgery protection
 router.use(csrfProtection);
@@ -62,18 +64,3 @@ router.get("/profile", isLoggedIn, (req, res, next) => {
 });
 
 module.exports = router;
-
-// Middleware
-function isLoggedIn(req, res, next) {
-  if (req.isAuthenticated()) {
-    return next();
-  }
-  res.redirect("/login");
-}
-
-function notLoggedIn(req, res, next) {
-  if (!req.isAuthenticated()) {
-    return next();
-  }
-  res.redirect("/");
-}

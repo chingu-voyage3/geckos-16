@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const Meeting = require("../models/meeting");
+const isLoggedIn = require("../middleware").isLoggedIn;
 
 router.get("/create", isLoggedIn, (req, res) => {
   res.render("create", {title: "GeckoMeet - Create a Meeting"});
@@ -68,17 +69,3 @@ router.get("/meeting/:id", (req, res, next) => {
 });
 
 module.exports = router;
-
-function isLoggedIn(req, res, next) {
-  if (req.isAuthenticated()) {
-    return next();
-  }
-  res.redirect("/");
-}
-
-function notLoggedIn(req, res, next) {
-  if (!req.isAuthenticated()) {
-    return next();
-  }
-  res.redirect("/");
-}
