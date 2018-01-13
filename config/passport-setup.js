@@ -14,9 +14,10 @@ passport.use(
     clientSecret: process.env.GOOGLE_CLIENT_SECRET,
     callbackURL: process.env.GOOGLE_CALLBACK_URL
   },
+  // passport callback function
   (accessToken, refreshToken, profile, done) => {
-    // passport callback function
-    User.findOrCreate({ googleId: profile.id }, function (err, user) {
+    console.log(profile);
+    User.findOrCreate({googleId: profile.id}, function (err, user) {
       return done(err, user);
     });
   }
@@ -29,9 +30,10 @@ passport.use(
     clientSecret: process.env.FACEBOOK_SECRET,
     callbackURL: process.env.FACEBOOK_CALLBACK_URL
   },
+  // passport callback function
   (accessToken, refreshToken, profile, done) => {
-    // passport callback function
-    User.findOrCreate(..., function(err, user) {
+    console.log(profile);
+    User.findOrCreate({facebookId: profile.id}, function(err, user) {
       if (err) { return done(err); }
       done(null, user);
     });
@@ -40,7 +42,7 @@ passport.use(
 
 // Use the LocalStrategy with Passport
 passport.use(
-  new LocalStrategy(
+  new LocalStrategy({
     // options for the local strategy
     usernameField: "email",
     passwordField: "password",

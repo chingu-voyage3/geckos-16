@@ -8,11 +8,18 @@ const app = express();
 // load environment variables
 if (process.env.NODE_ENV !== "production") require("dotenv").config();
 const PORT = process.env.PORT;
-const dbURL = process.env.MONGODB_URI;
+const dbURI = process.env.MONGODB_URI;
 const sessionSecret = process.env.SESSION;
+const passportSetup = require("./config/passport-setup");
 
 // set up view engine
 app.set("view engine", "ejs");
+
+// connect to mongodb using `mongoose.connect`...
+var promise = mongoose.connect(dbURI, {
+  useMongoClient: true,
+  /* other options */
+});
 
 // use middleware
 app.use(express.static('public'));
