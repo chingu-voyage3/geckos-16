@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <% include partials/head %>
+  </head>
+  <body>
+    <header>
+      <% include partials/header %>
+    </header>
+    <section id="profile">
+      <div class="inner-insert container">
+        <div class="inner container">
+          <h2 class="text-center">
+            <span class="fa fa-user" aria-hidden="true"></span> Your Profile
+          </h2>
+
+          <h3>Local Login</h3>
+          <% if (user.local.email) { %>
+            <ul>
+              <li><strong>email: </strong><%= user.local.email %></li>
+            </ul>
+            <a href="/unlink/local" class="btn btn-default">Unlink</a>
+          <% } else { %>
+            <a href="/connect/local" class="btn btn-default">Connect Local</a>
+          <% } %>
+
+          <hr>
+
+          <h3>Facebook</h3>
+          <% if (user.facebook.token) { %>
+            <ul>
+              <li><strong>name: </strong><%= user.facebook.name %></li>
+              <li><strong>email: </strong><%= user.facebook.email %></li>
+            </ul>
+            <a href="/unlink/facebook" class="btn btn-primary">Unlink</a>
+          <% } else { %>
+            <a href="/connect/facebook" class="btn btn-primary">Connect Facebook</a>
+          <% } %>
+
+          <hr>
+
+          <h3>Google</h3>
+          <% if (user.google.token) { %>
+            <ul>
+              <li><strong>name: </strong><%= user.google.name %></li>
+              <li><strong>email: </strong><%= user.google.email %></li>
+            </ul>
+            <a href="/unlink/google" class="btn btn-danger">Unlink</a>
+          <% } else { %>
+            <a href="/connect/google" class="btn btn-danger">Connect Google</a>
+          <% } %>
+
+        </div>
+      </div>
+    </section>
+    
+    <footer>
+        <% include partials/footer %>
+    </footer>
+    <% include partials/scripts %>
+   </body>
+</html>

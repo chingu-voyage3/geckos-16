@@ -1,0 +1,128 @@
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+html {
+  height: 100%;
+  box-sizing: border-box;
+}
+
+body {
+  min-height: 100%;
+  box-sizing: border-box;
+  background-color: #F5F5F5;
+  position: relative;
+  margin: 0;
+}
+
+div {
+  display: block;
+}
+
+header {
+  padding: 10px 0;
+  width: 100%;
+  background-color: #28A745;
+  color: #fff;
+}
+
+header h1 {
+  color: #fff;
+  font-size: 2rem;
+}
+
+.navbar-dark .navbar-nav .nav-link {
+  color: #fff;
+}
+
+.navbar-collapse {
+  -ms-flex-preferred-size: 100%;
+  flex-basis: 100%;
+  -ms-flex-positive: 1;
+  flex-grow: 1;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.collapse {
+  display: none;
+}
+
+.offset-header {
+  padding: 70px 0;
+}
+
+#home-page {
+  padding: 100px 0;
+  background-color: #28A745;
+}
+.welcome {
+  padding-bottom: 30px;
+  color: #fff;
+  font-size: 2.5rem;
+}
+
+#create-meeting,
+#meeting-detail,
+#delete-meeting,
+#signup,
+#login.
+#profile {
+  padding: 50px 0;
+}
+
+#list-meetings {
+  padding: 50px 0 100px 0;
+}
+
+.meeting-detail .edit-del {
+  text-align: right;  
+}
+
+.meeting-detail .edit,
+.meeting-detail .delete {
+  padding: .5rem;
+}
+
+.meeting-detail .edit .fa:before {
+  color: #000;
+}
+
+.meeting-detail .delete .fa:before {
+  color: #f00;
+}
+
+.meeting-detail .back {
+  text-align: left;  
+}
+
+#info {
+  padding: 30px 0;
+  min-height: 260px;
+}
+
+.inner-insert .inner {
+  max-width: 800px;
+  padding: 20px 30px 5px 20px;
+}
+
+.inner {
+  background-color: #fff;
+}   
+
+.inner-insert .list {
+  padding:20px;
+}
+
+footer {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  line-height: 60px;
+  background-color: #28A745;
+  color: #fff;
+}

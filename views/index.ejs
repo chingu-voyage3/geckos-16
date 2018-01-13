@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <% include partials/head %>
+  </head>
+  <body>
+    <header>
+      <% include partials/header %>
+    </header>
+    <section id="home-page">
+      <div class="container text-center offset-header">
+        <h2 class="welcome">
+          <span class="highlight">Welcome to GeckoMeet!</span>
+        </h2>
+        <%# if (login) { %>
+          <a href='/create' role="button" class="btn btn-outline-light">GET STARTED</a>
+        <%# } else { %>
+          <a href='/signup' role="button" class="btn btn-outline-light">GET STARTED</a>
+        <%# } %>
+      </div>
+    </section>
+    <section id="info">
+      <div class="container text-center">
+        <h2>What is GeckoMeet?</h2>
+        <p>GeckoMeet is a truely awesome app which helps make arranging meetings a doddle! Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+      </div>
+    </section>
+    <footer>
+        <% include partials/footer %>
+    </footer>
+    <% include partials/scripts %>
+   </body>
+</html>

@@ -1,0 +1,15 @@
+<p>
+            <strong>id</strong>: <%= user._id %><br>
+            <strong>email</strong>: <%= user.local.email %><br>
+            <strong>password</strong>: <%= user.local.password %>
+          </p>
+
+
+<form method="delete" action="">
+              <div id="meetingid" class="form-group">
+                <input type="hidden" name="meetingid" required="true" value="meeting._id">
+              </div>
+              <button class="btn btn-danger" type='submit'>Delete</button>
+              <a class="btn btn-secondary" href="<%= meeting.url %>" role="button">Cancel</a>
+            </form>
+

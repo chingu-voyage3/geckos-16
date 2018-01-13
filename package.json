@@ -1,0 +1,31 @@
+{
+  "name": "gregarious-gecko",
+  "version": "1.0.0",
+  "description": "A meeting planner",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "dev": "nodemon app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "geckos-16",
+  "license": "ISC",
+  "engines": {
+    "node": "8.9.2",
+    "npm": "5.6.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chingu-voyage3/geckos-16.git"
+  },
+  "homepage": "https://github.com/chingu-voyage3/geckos-16#readme",
+  "dependencies": {
+    "ejs": "^2.5.7",
+    "express": "^4.16.2",
+    "mongoose": "^4.13.9"
+  },
+  "devDependencies": {
+    "dotenv": "latest",
+    "nodemon": "latest"
+  }
+}
