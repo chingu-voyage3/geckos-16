@@ -14,13 +14,13 @@
           <h2 class="text-center"><span class="fa fa-sign-in" aria-hidden="true"></span> Login</h2>
       
           <!-- show any messages that come back with authentication -->
-          <% if (messages.length > 0) { %>
-            <% messages.forEach(function(message) {%>
+          <%# if (messages.length > 0) { %>
+            <%# messages.forEach(function(message) {%>
               <div class="alert alert-danger">
-                <%= message %>
+                <%#= message %>
               </div>
-            <% }); %>
-          <% } %>
+            <%# }); %>
+          <%# } %>
       
           <form action="/login" method="post">
             <div class="form-group row">
@@ -31,7 +31,7 @@
               <label for="password" class="col-form-label col-sm-2">Password:</label>
               <input type="password" id="password" name="password" placeholder="Password" class="form-control col-sm-10">
             </div>
-            <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+            <!--<input type="hidden" name="_csrf" value="<%#= csrfToken %>">-->
             <div class="form-group row justify-content-end">
               <button type="submit" class="btn btn-success">Login</button>
           </div>

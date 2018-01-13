@@ -1,5 +1,7 @@
 const express = require("express");
 const mongoose = require("mongoose");
+const authRoutes = require("./routes/auth-routes");
+const meetingRoutes = require("./routes/meeting-routes");
 
 const app = express();
 
@@ -14,6 +16,10 @@ app.set("view engine", "ejs");
 
 // use middleware
 app.use(express.static('public'));
+
+// set up routes
+app.use("/auth", authRoutes);
+app.use("/meeting", meetingRoutes);
 
 // create home route
 app.get("/", (req, res) => {
