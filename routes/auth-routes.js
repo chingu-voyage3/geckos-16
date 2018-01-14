@@ -27,7 +27,7 @@ router.get("/google/oauth2callback",
   passport.authenticate("google"),  
   // passport callback function is fired before following code is executed
   (req, res) => {
-    res.send("You reached the callback URI");
+    res.send(req.user);
   }
 );
 
@@ -46,7 +46,7 @@ router.get("/facebook/oauthcallback",
   passport.authenticate("facebook"),
   // passport callback function is fired before following code is executed
   (req, res) => {
-    res.send("You reached the callback URI");
+    res.send(req.user);
   }
 );
 

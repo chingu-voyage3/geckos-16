@@ -1,5 +1,7 @@
 const express = require("express");
 const mongoose = require("mongoose");
+const passport = require("passport");
+const cookieSession = require("cookie-session");
 const authRoutes = require("./routes/auth-routes");
 const meetingRoutes = require("./routes/meeting-routes");
 
@@ -14,6 +16,15 @@ const passportSetup = require("./config/passport-setup");
 
 // set up view engine
 app.set("view engine", "ejs");
+
+app.use(cookieSession({
+  maxAge: 24 * 60 * 60 * 1000, // 1 day
+  keys: [sessionSecret]
+}))
+
+//initialize passport
+app.use(passport.initialize());
+app.use(passport.session());
 
 // Use bluebird to avoid warning:
 // "Mongoose: mpromise (mongoose's default promise library) is deprecated"
