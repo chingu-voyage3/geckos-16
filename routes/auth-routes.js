@@ -1,5 +1,7 @@
 const router = require("express").Router();
 const passport = require("passport");
+const isLoggedIn = require("../middleware").isLoggedIn;
+const notLoggedIn = require("../middleware").notLoggedIn;
 
 // auth login
 router.get("/login", (req, res) => {
@@ -27,7 +29,7 @@ router.get("/google/oauth2callback",
   passport.authenticate("google"),  
   // passport callback function is fired before following code is executed
   (req, res) => {
-    res.send(req.user);
+    res.redirect("/profile");
   }
 );
 
@@ -46,7 +48,7 @@ router.get("/facebook/oauthcallback",
   passport.authenticate("facebook"),
   // passport callback function is fired before following code is executed
   (req, res) => {
-    res.send(req.user);
+    res.redirect("/profile");
   }
 );
 

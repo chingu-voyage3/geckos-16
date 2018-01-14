@@ -4,6 +4,7 @@ const passport = require("passport");
 const cookieSession = require("cookie-session");
 const authRoutes = require("./routes/auth-routes");
 const meetingRoutes = require("./routes/meeting-routes");
+const profileRoutes = require("./routes/profile-routes");
 
 const app = express();
 
@@ -41,7 +42,8 @@ app.use(express.static('public'));
 
 // set up routes
 app.use("/auth", authRoutes);
-app.use("/meeting", meetingRoutes);
+app.use("/meetings", meetingRoutes);
+app.use("/profile", profileRoutes);
 
 // create home route
 app.get("/", (req, res) => {
