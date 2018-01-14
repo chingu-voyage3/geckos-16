@@ -7,12 +7,10 @@ const Meeting = require("../models/meeting-model");
 const Comment = require("../models/comment-model");
 
 passport.serializeUser((user, done) => {
-  console.log("made it to serialize");
   done(null, user.id);
 });
 
 passport.deserializeUser((id, done) => {
-  console.log("made it to deserialize");
   User.findById(id).then((user) => {
     done(null, user);
   });

@@ -11,7 +11,7 @@
       <div class="inner-insert container">
         <div class="inner container">
           <h2 class="text-center">
-            <span class="fa fa-user" aria-hidden="true"></span> Your Profile
+            <span class="fa fa-user" aria-hidden="true"></span> <%= user.local.name || user.google.name || user.facebook.name || "" %> Profile
           </h2>
 
           <h3>Local Login</h3>
