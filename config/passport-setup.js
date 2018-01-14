@@ -6,6 +6,18 @@ const User = require("../models/user-model");
 const Meeting = require("../models/meeting-model");
 const Comment = require("../models/comment-model");
 
+passport.serializeUser((user, done) => {
+  console.log("made it to serialize");
+  done(null, user.id);
+});
+
+passport.deserializeUser((id, done) => {
+  console.log("made it to deserialize");
+  User.findById(id).then((user) => {
+    done(null, user);
+  });
+});
+
 // Use the GoogleStrategy within Passport.
 //   Strategies in Passport require a `verify` function, which accept
 //   credentials (in this case, an accessToken, refreshToken, and Google
@@ -24,6 +36,7 @@ passport.use(
       if (currentUser) {
         // user already in db
         console.log("user is: " + currentUser);
+        done(null, currentUser);
       }
       else {
         // user not in db, so create user
@@ -34,6 +47,7 @@ passport.use(
           "google.email": profile.emails[0].value
         }).save().then((newUser) => {
           console.log("new user created: " + newUser);
+          done(null, newUser);
         });
       }
     });
@@ -56,6 +70,7 @@ passport.use(
       if (currentUser) {
         // user already in db
         console.log("user is: " + currentUser);
+        done(null, currentUser);
       }
       else {
         // user not in db, so create user
@@ -66,6 +81,7 @@ passport.use(
           "facebook.email": profile.emails[0].value
         }).save().then((newUser) => {
           console.log("new user created: " + newUser);
+          done(null, newUser);
         });
       }
     });
