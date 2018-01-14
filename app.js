@@ -15,6 +15,10 @@ const passportSetup = require("./config/passport-setup");
 // set up view engine
 app.set("view engine", "ejs");
 
+// Use bluebird to avoid warning:
+// "Mongoose: mpromise (mongoose's default promise library) is deprecated"
+mongoose.Promise = require('bluebird');
+
 // connect to mongodb using `mongoose.connect`...
 var promise = mongoose.connect(dbURI, {
   useMongoClient: true,

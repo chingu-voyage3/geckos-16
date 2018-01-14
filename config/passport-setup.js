@@ -2,6 +2,9 @@ const passport = require("passport");
 const GoogleStrategy = require("passport-google-oauth").OAuth2Strategy;
 const FacebookStrategy = require("passport-facebook").Strategy;
 const LocalStrategy = require("passport-local").Strategy;
+const User = require("../models/user-model");
+const Meeting = require("../models/meeting-model");
+const Comment = require("../models/comment-model");
 
 // Use the GoogleStrategy within Passport.
 //   Strategies in Passport require a `verify` function, which accept
@@ -16,9 +19,23 @@ passport.use(
   },
   // passport callback function
   (accessToken, refreshToken, profile, done) => {
-    console.log(profile);
-    User.findOrCreate({googleId: profile.id}, function (err, user) {
-      return done(err, user);
+    // check if user already exists in db
+    User.findOne({"google.id": profile.id}).then((currentUser) => {
+      if (currentUser) {
+        // user already in db
+        console.log("user is: " + currentUser);
+      }
+      else {
+        // user not in db, so create user
+        new User({
+          "google.id": profile.id,
+          "google.token": accessToken,
+          "google.name": profile.displayName,
+          "google.email": profile.emails[0].value
+        }).save().then((newUser) => {
+          console.log("new user created: " + newUser);
+        });
+      }
     });
   }
 ));
@@ -28,14 +45,29 @@ passport.use(
   new FacebookStrategy({
     clientID: process.env.FACEBOOK_ID,
     clientSecret: process.env.FACEBOOK_SECRET,
-    callbackURL: process.env.FACEBOOK_CALLBACK_URL
+    callbackURL: process.env.FACEBOOK_CALLBACK_URL,
+    profileFields: ["displayName", "emails"]
   },
   // passport callback function
   (accessToken, refreshToken, profile, done) => {
     console.log(profile);
-    User.findOrCreate({facebookId: profile.id}, function(err, user) {
-      if (err) { return done(err); }
-      done(null, user);
+    // check if user already exists in db
+    User.findOne({"facebook.id": profile.id}).then((currentUser) => {
+      if (currentUser) {
+        // user already in db
+        console.log("user is: " + currentUser);
+      }
+      else {
+        // user not in db, so create user
+        new User({
+          "facebook.id": profile.id,
+          "facebook.token": accessToken,
+          "facebook.name": profile.displayName,
+          "facebook.email": profile.emails[0].value
+        }).save().then((newUser) => {
+          console.log("new user created: " + newUser);
+        });
+      }
     });
   }
 ));

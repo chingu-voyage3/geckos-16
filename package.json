@@ -20,6 +20,7 @@
   },
   "homepage": "https://github.com/chingu-voyage3/geckos-16#readme",
   "dependencies": {
+    "bluebird": "^3.5.1",
     "ejs": "^2.5.7",
     "express": "^4.16.2",
     "mongoose": "^4.13.9",
