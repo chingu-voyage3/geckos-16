@@ -33,7 +33,7 @@ passport.use(
     User.findOne({"google.id": profile.id}).then((currentUser) => {
       if (currentUser) {
         // user already in db
-        console.log("user is: " + currentUser);
+        //console.log("user is: " + currentUser);
         done(null, currentUser);
       }
       else {
@@ -44,7 +44,7 @@ passport.use(
           "google.name": profile.displayName,
           "google.email": profile.emails[0].value
         }).save().then((newUser) => {
-          console.log("new user created: " + newUser);
+          //console.log("new user created: " + newUser);
           done(null, newUser);
         });
       }
@@ -67,7 +67,7 @@ passport.use(
     User.findOne({"facebook.id": profile.id}).then((currentUser) => {
       if (currentUser) {
         // user already in db
-        console.log("user is: " + currentUser);
+        //console.log("user is: " + currentUser);
         done(null, currentUser);
       }
       else {
@@ -78,7 +78,7 @@ passport.use(
           "facebook.name": profile.displayName,
           "facebook.email": profile.emails[0].value
         }).save().then((newUser) => {
-          console.log("new user created: " + newUser);
+          //console.log("new user created: " + newUser);
           done(null, newUser);
         });
       }

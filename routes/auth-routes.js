@@ -5,13 +5,14 @@ const notLoggedIn = require("../middleware").notLoggedIn;
 
 // auth login
 router.get("/login", (req, res) => {
-  res.render("login", {title: "GeckoMeet - Log In"});
+  res.render("login", {title: "GeckoMeet - Log In", user: req.user});
 });
 
 // auth logout
 router.get("/logout", (req, res) => {
   // handle with passport
-  res.send("logging out");
+  req.logout();
+  res.redirect("/");
 });
 
 /*********

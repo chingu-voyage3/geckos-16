@@ -47,7 +47,7 @@ app.use("/profile", profileRoutes);
 
 // create home route
 app.get("/", (req, res) => {
-  res.render("index", {title: "GeckoMeet - Homepage"});
+  res.render("index", {title: "GeckoMeet - Homepage", user: req.user});
 });
 
 // start the server
