@@ -2,24 +2,46 @@ const router = require("express").Router();
 const passport = require("passport");
 const isLoggedIn = require("../middleware").isLoggedIn;
 const notLoggedIn = require("../middleware").notLoggedIn;
+const appName = "GeckoMeet";
 
 // auth login
-router.get("/login", (req, res) => {
+router.get("/login", notLoggedIn, (req, res) => {
   res.render("login", {title: "GeckoMeet - Log In", user: req.user});
 });
 
+router.post("/login", notLoggedIn, passport.authenticate("local-login", {
+  successRedirect: "../profile",
+  failureRedirect: "login",
+  failureFlash: true
+}));
+
 // auth logout
-router.get("/logout", (req, res) => {
-  // handle with passport
+router.get("/logout", isLoggedIn, (req, res) => {
+  // handled by passport
   req.logout();
   res.redirect("/");
 });
+
+/***************
+ * Local Signup
+ ***************/
+
+ router.get("/signup", notLoggedIn, (req, res) => {
+  const messages = req.flash("error");
+  res.render("signup", {title: `${appName} - Sign Up`, user: req.user, messages: messages});
+ });
+
+ router.post("/signup", notLoggedIn, passport.authenticate("local-signup", {
+  successRedirect: "../profile",
+  failureRedirect: "signup",
+  failureFlash: true
+ }));
 
 /*********
  * Google
  *********/
 // auth with google
-router.get("/google",
+router.get("/google", notLoggedIn,
   passport.authenticate("google", {
     scope: ["profile", "email"]
   })
@@ -38,7 +60,7 @@ router.get("/google/oauth2callback",
  * Facebook
  ***********/
 // auth with facebook
-router.get("/facebook",
+router.get("/facebook", notLoggedIn,
   passport.authenticate("facebook", {
     scope: ["public_profile", "email"]
   })

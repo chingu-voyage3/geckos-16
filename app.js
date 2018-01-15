@@ -2,9 +2,13 @@ const express = require("express");
 const mongoose = require("mongoose");
 const passport = require("passport");
 const cookieSession = require("cookie-session");
+const bodyParser = require("body-parser");
+const expressValidator = require("express-validator");
+const flash = require("connect-flash");
 const authRoutes = require("./routes/auth-routes");
 const meetingRoutes = require("./routes/meeting-routes");
 const profileRoutes = require("./routes/profile-routes");
+const connectRoutes = require("./routes/connect-routes");
 
 const app = express();
 
@@ -39,11 +43,15 @@ var promise = mongoose.connect(dbURI, {
 
 // use middleware
 app.use(express.static('public'));
+app.use(bodyParser.urlencoded({extended: false}));
+app.use(expressValidator()); // Add this after the bodyParser middleware
+app.use(flash());
 
 // set up routes
 app.use("/auth", authRoutes);
 app.use("/meetings", meetingRoutes);
 app.use("/profile", profileRoutes);
+app.use("/connect", connectRoutes);
 
 // create home route
 app.get("/", (req, res) => {
@@ -51,6 +59,9 @@ app.get("/", (req, res) => {
 });
 
 // start the server
-app.listen(PORT, () => {
+app.listen(PORT, (err) => {
+  if (err) {
+    throw err;
+  }
   console.log(`Listening on Port ${PORT}`);
 });

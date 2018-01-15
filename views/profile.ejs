@@ -17,6 +17,7 @@
           <h3>Local Login</h3>
           <% if (user.local.email) { %>
             <ul>
+              <li><strong>name: </strong><%= user.local.name %></li>
               <li><strong>email: </strong><%= user.local.email %></li>
             </ul>
             <a href="/unlink/local" class="btn btn-default">Unlink</a>
