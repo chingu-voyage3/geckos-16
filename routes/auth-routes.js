@@ -6,7 +6,8 @@ const appName = "GeckoMeet";
 
 // auth login
 router.get("/login", notLoggedIn, (req, res) => {
-  res.render("login", {title: "GeckoMeet - Log In", user: req.user});
+  const messages = req.flash("error");
+  res.render("login", {title: "GeckoMeet - Log In", messages: messages, user: req.user});
 });
 
 router.post("/login", notLoggedIn, passport.authenticate("local-login", {
@@ -28,7 +29,7 @@ router.get("/logout", isLoggedIn, (req, res) => {
 
  router.get("/signup", notLoggedIn, (req, res) => {
   const messages = req.flash("error");
-  res.render("signup", {title: `${appName} - Sign Up`, user: req.user, messages: messages});
+  res.render("signup", {title: `${appName} - Sign Up`, messages: messages, user: req.user});
  });
 
  router.post("/signup", notLoggedIn, passport.authenticate("local-signup", {

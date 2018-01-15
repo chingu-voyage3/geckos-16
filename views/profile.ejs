@@ -20,7 +20,7 @@
               <li><strong>name: </strong><%= user.local.name %></li>
               <li><strong>email: </strong><%= user.local.email %></li>
             </ul>
-            <a href="/unlink/local" class="btn btn-default">Unlink</a>
+            <a href="/connect/unlink/local" class="btn btn-default">Unlink</a>
           <% } else { %>
             <a href="/connect/local" class="btn btn-default">Connect Local</a>
           <% } %>
@@ -33,7 +33,7 @@
               <li><strong>name: </strong><%= user.facebook.name %></li>
               <li><strong>email: </strong><%= user.facebook.email %></li>
             </ul>
-            <a href="/unlink/facebook" class="btn btn-primary">Unlink</a>
+            <a href="/connect/unlink/facebook" class="btn btn-primary">Unlink</a>
           <% } else { %>
             <a href="/connect/facebook" class="btn btn-primary">Connect Facebook</a>
           <% } %>
@@ -46,7 +46,7 @@
               <li><strong>name: </strong><%= user.google.name %></li>
               <li><strong>email: </strong><%= user.google.email %></li>
             </ul>
-            <a href="/unlink/google" class="btn btn-danger">Unlink</a>
+            <a href="/connect/unlink/google" class="btn btn-danger">Unlink</a>
           <% } else { %>
             <a href="/connect/google" class="btn btn-danger">Connect Google</a>
           <% } %>

@@ -10,7 +10,7 @@
     <section id="list-meetings">
       <div class="inner-insert container text-center">
         <div class="inner container list">
-          <h2><%= title %></h2>
+          <h2><%= user.local.name || user.google.name || user.facebook.name || "" %>: Current Meetings</h2>
           <ul class="list-group">
             <% if (meetings.length > 0) { %>
               <% meetings.forEach(function(meetings) { %>
@@ -29,7 +29,7 @@
               </li>
             <% } %>
           </ul>
-          <a class="nav-link" href="/create">Create a meeting <span class="sr-only">(current)</span></a>
+          <a class="nav-link" href="/meetings/create">Create a meeting <span class="sr-only">(current)</span></a>
         </div>
       </div>
     </section>

@@ -11,24 +11,24 @@
       <div class="inner-insert container">
         <div class="inner container">
 
-          <h2 class="text-center">Enter your meeting details</h2>
+          <h2 class="text-center">Edit your meeting details</h2>
 
-          <form action="create" method="post">
+          <form action="edit" method="post">
               <div class="form-group row">
                 <label for="title" class="col-form-label col-sm-2">Title:</label>
-                <input type="text" id="title" name="title" placeholder="Title" class="form-control col-sm-10">
+                <input type="text" id="title" name="title" placeholder="Title" class="form-control col-sm-10" value="<%= meeting.title %>">
               </div>
               <div class="form-group row">
                 <label class="col-form-label col-sm-2" for="description">Description:</label>
-                <textarea type="text" class="form-control col-sm-10" rows="6" name="description" placeholder="Description"></textarea>
+                <textarea type="text" class="form-control col-sm-10" rows="6" name="description" placeholder="Description"><%= meeting.description %></textarea>
               </div>
               <div class="form-group row">
                 <label class="col-form-label col-sm-2" for="location">Location:</label>
-                <input type="text" class="form-control col-sm-10" name="location" placeholder="Location">
+                <input type="text" class="form-control col-sm-10" name="location" placeholder="Location" value="<%= meeting.location %>">
               </div>
               <div class="form-group row">
                 <label class="col-form-label col-sm-2" for="time">Date & time:</label>
-                <input type="text" class="form-control col-sm-10" name="time" placeholder="Date & Time">
+                <input type="text" class="form-control col-sm-10" name="time" placeholder="Date & Time" value="<%= meeting.time %>">
               </div>
               <div class="form-group row justify-content-end">
                 <button type="submit" class="btn btn-success ">Submit</button>

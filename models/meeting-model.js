@@ -13,14 +13,21 @@ const meetingSchema = new Schema({
 meetingSchema
 .virtual("durl")
 .get(function () {
-  return "/meeting/" + this._id + "/delete";
+  return "/meetings/meeting-detail/" + this._id + "/delete";
 });
 
 // Virtual for meeting's URL
 meetingSchema
 .virtual("url")
 .get(function () {
-  return "/meeting/" + this._id;
+  return "/meetings/meeting-detail/" + this._id;
+});
+
+// Virtual for meeting's edit URL
+meetingSchema
+.virtual("eurl")
+.get(function () {
+  return "/meetings/meeting-detail/" + this._id + "/edit";
 });
 
 // create the model for meeting and expose it to our app
