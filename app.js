@@ -9,6 +9,7 @@ const authRoutes = require("./routes/auth-routes");
 const meetingRoutes = require("./routes/meeting-routes");
 const profileRoutes = require("./routes/profile-routes");
 const connectRoutes = require("./routes/connect-routes");
+const commentRoutes = require("./routes/comment-routes");
 
 const app = express();
 
@@ -52,6 +53,7 @@ app.use("/auth", authRoutes);
 app.use("/meetings", meetingRoutes);
 app.use("/profile", profileRoutes);
 app.use("/connect", connectRoutes);
+app.use("/comment", commentRoutes);
 
 // create home route
 app.get("/", (req, res) => {
