@@ -6,7 +6,8 @@ const meetingSchema = new Schema({
   creator: {type: Schema.ObjectId, ref: "User", required: true},
   description: {type: String, required: true},
   location: {type: String, required: false},
-  time: {type: String, required: false}
+  time: {type: String, required: false},
+  timestamp: {type: Date, default: Date.now}
 });
 
 // Virtual for meeting's delete URL
@@ -32,6 +33,5 @@ meetingSchema
 
 // create the model for meeting and expose it to our app
 const Meeting = mongoose.model("Meeting", meetingSchema);
-
 
 module.exports = Meeting;

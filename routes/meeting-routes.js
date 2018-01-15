@@ -69,7 +69,8 @@ router.get("/", isLoggedIn, (req, res) => {
 router.get("/meeting-detail/:id", (req, res) => {
   Meeting.findById(req.params.id)
   .then(function(results) {
-    res.render("meeting-detail", {title: results.title, meeting: results, user: req.user});
+    const fullUrl = req.protocol + '://' + req.get('host') + req.originalUrl;
+    res.render("meeting-detail", {title: results.title, meeting: results, user: req.user, fullUrl: fullUrl});
   })
 });
 
