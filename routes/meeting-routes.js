@@ -1,24 +1,54 @@
 const router = require("express").Router();
 const Meeting = require("../models/meeting-model");
+const Comment = require("../models/comment-model");
 const isLoggedIn = require("../middleware").isLoggedIn;
 
+/* Meetings List */
+router.get("/", isLoggedIn, (req, res) => {
+  Meeting.find({creator: req.user.id})
+  .then(function(results) {
+    res.render("meetings", {title: "GeckoMeet - Current Meetings", meetings: results, user: req.user});
+  });
+});
+
+/* Meeting Detail */
+router.get("/meeting-detail/:id", (req, res) => {
+  Meeting.findById(req.params.id)
+  .then(function(results) {
+    Comment.find({"meeting": req.params.id})
+    .populate("creator")
+    .then(function(comments) {
+      const fullUrl = req.protocol + '://' + req.get('host') + req.originalUrl;
+      res.render("meeting-detail", {
+        title: results.title,
+        meeting: results,
+        user: req.user,
+        fullUrl: fullUrl,
+        comments: comments
+      });
+    });
+  });
+});
+
+/* Create Meeting */
 router.get("/create", isLoggedIn, (req, res) => {
   res.render("create", {title: "GeckoMeet - Create a Meeting", user: req.user});
 });
 
 router.post("/create", isLoggedIn, (req, res) => {
-  var meeting = {
+  const meeting = {
     title: req.body.title,
     creator: req.user._id,
     description: req.body.description,
     location: req.body.location,
     time: req.body.time
   };
-  var data = new Meeting(meeting);
+  const data = new Meeting(meeting);
   data.save();
   res.redirect("/meetings");
 });
 
+/* Edit Meeting */
 router.get("/meeting-detail/:id/edit", isLoggedIn, (req, res) => {
   Meeting.findById(req.params.id)
     .then(function(results) {
@@ -41,6 +71,7 @@ router.post("/meeting-detail/:id/edit", isLoggedIn, (req, res) => {
   res.redirect("/meetings");
 });
 
+/* Delete Meeting */
 router.get("/meeting-detail/:id/delete", isLoggedIn, (req, res) => {
   Meeting.findById(req.params.id)
   .then(function(results) {
@@ -57,21 +88,6 @@ router.get("/delete/:id", isLoggedIn, (req, res) => {
     }
     res.redirect("/meetings");
   });
-});
-
-router.get("/", isLoggedIn, (req, res) => {
-  Meeting.find({creator: req.user.id})
-  .then(function(results) {
-    res.render("meetings", {title: "GeckoMeet - Current Meetings", meetings: results, user: req.user});
-  });
-});
-
-router.get("/meeting-detail/:id", (req, res) => {
-  Meeting.findById(req.params.id)
-  .then(function(results) {
-    const fullUrl = req.protocol + '://' + req.get('host') + req.originalUrl;
-    res.render("meeting-detail", {title: results.title, meeting: results, user: req.user, fullUrl: fullUrl});
-  })
 });
 
 module.exports = router;
