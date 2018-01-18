@@ -14,6 +14,20 @@ router.post("/add-comment", isLoggedIn, (req, res) => {
   res.redirect("/meetings/meeting-detail/" + req.body.meetingId);
 });
 
+router.get("/delete-comment/:id", (req, res) => {
+  Comment.findById(req.params.id)
+  .then(function(results) {
+    const comment = results;
+    comment.text = "Comment deleted";
+    comment.save((err) => {
+      if (err) {
+        throw err;
+      }
+      res.redirect("/meetings/meeting-detail/" + comment.meeting);
+    });
+  });
+});
+
 
 
 module.exports = router;
