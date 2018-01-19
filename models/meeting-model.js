@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const moment = require("moment");
 const Schema = mongoose.Schema;
 
 const meetingSchema = new Schema({
@@ -29,6 +30,13 @@ meetingSchema
 .virtual("eurl")
 .get(function () {
   return "/meetings/meeting-detail/" + this._id + "/edit";
+});
+
+// Virtual for meeting's creation date
+meetingSchema
+.virtual("timestamp_formatted")
+.get(function () {
+  return moment(this.timestamp).format("MMMM Do, YYYY, h:mm a");
 });
 
 // create the model for meeting and expose it to our app

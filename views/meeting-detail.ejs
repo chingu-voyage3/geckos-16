@@ -9,36 +9,46 @@
     </header>
 
     <section id="meeting-detail" class="meeting-detail">
-      <div class="inner-insert container text-center">
+      <div class="inner-insert container">
         <div class="inner container list">
+          <section class="card bg-light meeting-card">
+            <div class="card-head">
 
-          <% if (user && (user.id == meeting.creator)) { %>
+              <% if (user && (user.id == meeting.creator)) { %>
 
-            <div class="edit-del">
-              <a href="<%= meeting.eurl %>" class="edit"><span class="fa fa-pencil fa-lg" title="Edit meeting"></span></a>
-              <a href="<%= meeting.durl %>" class="delete"><span class="fa fa-trash-o fa-lg" title="Delete meeting"></span></a>
+                <div class="edit-del">
+                  <a href="<%= meeting.eurl %>" class="edit"><span class="fa fa-pencil fa-lg" title="Edit meeting"></span></a>
+                  <a href="<%= meeting.durl %>" class="delete"><span class="fa fa-trash-o fa-lg" title="Delete meeting"></span></a>
+                </div>
+
+              <% } %>
+
+                <h2 class="text-center"><%= meeting.title %></h2>
+                <h3 class="card-subtitle text-muted text-center">
+                  created by <%= user.local.name || user.google.name || user.facebook.name %>, on <%= meeting.timestamp_formatted %>
+                </h3>
+                <div class="card-body">
+                  <div class="text-left">
+                    <p><strong>The plan: </strong><%= meeting.description %></p>
+                    <p><strong>Where: </strong><%= meeting.location %></p>
+                    <p><strong>When: </strong><%= meeting.time %></p>
+                  </div>
+
+                  <% if (user && (user.id == meeting.creator)) { %>
+
+                    <div class="share-link alert alert-info" role="alert">
+                      <p><strong>Share this link with friends to invite them to your meeting.</strong></p>
+                      <span class="meeting-link"><%= fullUrl %></span>
+                    </div>
+
+                  <% } %>
+                </div>
+
             </div>
-
-          <% } %>
-
-          <h2><%= meeting.title %></h2>
-          <p>
-            <p><%= meeting.description %></p>
-            <p><%= meeting.location %></p>
-            <p><%= meeting.time %></p>
-          </p>
-
-          <% if (user && (user.id == meeting.creator)) { %>
-
-            <div class="share-link alert alert-info" role="alert">
-              <p><strong>Share this link with friends to invite them to your meeting.</strong></p>
-              <span class="meeting-link"><%= fullUrl %></span>
-            </div>
-
-          <% } %>
+          </section>
 
           <section id="comments" class="comments text-left">
-            <h3 class="">Comments</h3>
+            <h3 class="text-muted">Comments</h3>
             <% if (comments) { %>
               <% comments.forEach(function(comment) { %>
                 
