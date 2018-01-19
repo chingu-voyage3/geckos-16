@@ -44,14 +44,16 @@
                 
                 <div class="card">
                   <div class="card-body">
-                    <p><strong><%= comment.creator.local.name || comment.creator.google.name || comment.creator.facebook.name %></strong><p>
-                    <%= comment.text %>
-                    <div class="edit-del">
-                      <a href="/comment/edit-comment/<%= comment.id %>" class="edit"><span class="fa fa-pencil fa-lg" title="Edit comment"></span></a>
-                      <a href="/comment/delete-comment/<%= comment.id %>" class="delete"><span class="fa fa-trash-o fa-lg" title="Delete comment"></span></a>
-                    </div>
+                    <% if (comment.status == "edit") { %>
+                      <% include partials/comment-edit %>
+                    <% } else if (comment.status == "deleted") { %>
+                      <% include partials/comment-deleted %>
+                    <% } else { %>
+                      <% include partials/comment %>
+                    <% } %>
                   </div>
                 </div>
+
               <% }); %>
             <% } %>
           </section>

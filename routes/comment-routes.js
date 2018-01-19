@@ -18,7 +18,8 @@ router.get("/delete-comment/:id", (req, res) => {
   Comment.findById(req.params.id)
   .then(function(results) {
     const comment = results;
-    comment.text = "Comment deleted";
+    comment.text = null;
+    comment.status = "deleted";
     comment.save((err) => {
       if (err) {
         throw err;
@@ -28,6 +29,33 @@ router.get("/delete-comment/:id", (req, res) => {
   });
 });
 
+router.get("/edit-comment/:id", (req, res) => {
+  Comment.findById(req.params.id)
+  .then(function(results) {
+    const comment = results;
+    comment.status = "edit";
+    comment.save((err) => {
+      if (err) {
+        throw err;
+      }
+      res.redirect("/meetings/meeting-detail/" + comment.meeting);
+    });
+  });
+});
 
+router.post("/edit-comment", (req, res) => {
+  Comment.findById(req.body.commentId)
+  .then(function(results) {
+    const comment = results;
+    comment.text = req.body.comment;
+    comment.status = "normal";
+    comment.save((err) => {
+      if (err) {
+        throw err;
+      }
+      res.redirect("/meetings/meeting-detail/" + comment.meeting);
+    });
+  });
+});
 
 module.exports = router;
