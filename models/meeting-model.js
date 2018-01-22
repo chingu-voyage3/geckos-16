@@ -8,7 +8,11 @@ const meetingSchema = new Schema({
   description: {type: String, required: true},
   location: {type: String, required: false},
   time: {type: String, required: false},
-  timestamp: {type: Date, default: Date.now}
+  timestamp: {type: Date, default: Date.now},
+  participants: [{
+    type: Schema.ObjectId,
+    ref: "User"
+  }]
 });
 
 // Virtual for meeting's delete URL

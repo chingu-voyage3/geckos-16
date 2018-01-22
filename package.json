@@ -20,6 +20,7 @@
   },
   "homepage": "https://github.com/chingu-voyage3/geckos-16#readme",
   "dependencies": {
+    "async": "^2.6.0",
     "bcryptjs": "^2.4.3",
     "bluebird": "^3.5.1",
     "body-parser": "^1.18.2",

@@ -8,13 +8,13 @@
       <% include partials/header %>
     </header>
 
-    <section id="meeting-detail" class="meeting-detail">
+    <section id="meeting-detail" class="meeting-detail pb-3">
       <div class="inner-insert container">
         <div class="inner container list">
           <section class="card bg-light meeting-card">
             <div class="card-head">
 
-              <% if (user && (user.id == meeting.creator)) { %>
+              <% if (user && (user.id == meeting.creator.id)) { %>
 
                 <div class="edit-del">
                   <a href="<%= meeting.eurl %>" class="edit"><span class="fa fa-pencil fa-lg" title="Edit meeting"></span></a>
@@ -25,7 +25,7 @@
 
                 <h2 class="text-center"><%= meeting.title %></h2>
                 <h3 class="card-subtitle text-muted text-center">
-                  created by <%= user.local.name || user.google.name || user.facebook.name %>, on <%= meeting.timestamp_formatted %>
+                  created by <%= meeting.creator.local.name || meeting.creator.google.name || meeting.creator.facebook.name %>, on <%= meeting.timestamp_formatted %>
                 </h3>
                 <div class="card-body">
                   <div class="text-left">
@@ -34,7 +34,7 @@
                     <p><strong>When: </strong><%= meeting.time %></p>
                   </div>
 
-                  <% if (user && (user.id == meeting.creator)) { %>
+                  <% if (user && (user.id == meeting.creator.id)) { %>
 
                     <div class="share-link alert alert-info" role="alert">
                       <p><strong>Share this link with friends to invite them to your meeting.</strong></p>
@@ -47,9 +47,18 @@
             </div>
           </section>
 
+          <section id="participants" class="participants text-left">
+            <% if (meeting.participants.length > 0) { %>
+              <h3 class="text-muted">Participants</h3>
+              <% meeting.participants.forEach(function(participant) { %>
+                <p><%= participant.local.name || participant.google.name || participant.facebook.name %></p>
+              <% }); %>
+            <% } %>
+          </section>
+
           <section id="comments" class="comments text-left">
-            <h3 class="text-muted">Comments</h3>
-            <% if (comments) { %>
+            <% if (comments.length > 0) { %>
+              <h3 class="text-muted">Comments</h3>
               <% comments.forEach(function(comment) { %>
                 
                 <div class="card">
@@ -81,8 +90,7 @@
                     <form action="/comment/add-comment" method="post">
                       <div class="form-group row">
                         <label class="col-form-label col-sm-2" for="comment">Comment:</label>
-                        <textarea type="text" class="form-control col-sm-10" rows="6" name="comment">
-                        </textarea>
+                        <textarea type="text" class="form-control col-sm-10" rows="6" name="comment"></textarea>
                         <input type="hidden" name="meetingId" value="<%= meeting.id %>">
                       </div>
                       <div class="form-group row justify-content-end">
@@ -97,10 +105,6 @@
             </section>
 
           <% } %>
-
-          <div class="back">
-            <a href="/meetings" class="text-dark"><span class="fa fa-arrow-left"></span> Back to list</a>
-          </div>
         </div>
       </div>
     </section>
