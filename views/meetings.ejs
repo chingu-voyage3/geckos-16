@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <% include partials/head %>
+  </head>
+  <body>
+    <header>
+      <% include partials/header %>
+    </header>
+    <section id="list-meetings">
+      <div class="inner-insert container text-center">
+        <div class="inner container list">
+          <h2><%= user.local.name || user.google.name || user.facebook.name || "" %>: Current Meetings</h2>
+          <ul class="list-group">
+            <% if (meetings.length > 0) { %>
+              <% meetings.forEach(function(meetings) { %>
+                <li class="list-group-item">
+                  <a href="<%= meetings.url %>" class="text-dark">
+                    <h4><%= meetings.title %></h4>
+                    <p><%= meetings.description %></p>
+                    <p><%= meetings.location %></p>
+                    <p><%= meetings.time %></p>
+                  </a>
+                </li>
+              <% }); %>
+            <% } else { %>
+              <li class="list-group-item">
+                <p>You aren't planning any meetings at the moment.</p>
+              </li>
+            <% } %>
+          </ul>
+          <a class="nav-link" href="/meetings/create">Create a meeting <span class="sr-only">(current)</span></a>
+        </div>
+      </div>
+    </section>
+    <footer>
+      <% include partials/footer %>
+    </footer>
+    <% include partials/scripts %>
+  </body>
+</html>

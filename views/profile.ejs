@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <% include partials/head %>
+  </head>
+  <body>
+    <header>
+      <% include partials/header %>
+    </header>
+    <section id="profile">
+        <div class="inner container profile text-center">
+          <h2 class="text-center">
+            <span class="fa fa-user" aria-hidden="true"></span> <%= user.local.name || user.google.name || user.facebook.name || "" %> Profile
+          </h2>
+
+          <h4>Local Login</h4>
+          <% if (user.local.email) { %>
+            <ul>
+              <li><strong>name: </strong><%= user.local.name %></li>
+              <li><strong>email: </strong><%= user.local.email %></li>
+            </ul>
+            <a href="/connect/unlink/local" class="btn btn-default">Unlink</a>
+          <% } else { %>
+            <a href="/connect/local" class="btn btn-default">Connect Local</a>
+          <% } %>
+
+          <hr>
+
+          <h4>Facebook</h4>
+          <% if (user.facebook.token) { %>
+            <ul>
+              <li><strong>name: </strong><%= user.facebook.name %></li>
+              <li><strong>email: </strong><%= user.facebook.email %></li>
+            </ul>
+            <a href="/connect/unlink/facebook" class="btn btn-primary">Unlink</a>
+          <% } else { %>
+            <a href="/connect/facebook" class="btn btn-primary">Connect Facebook</a>
+          <% } %>
+
+          <hr>
+
+          <h4>Google</h4>
+          <% if (user.google.token) { %>
+            <ul>
+              <li><strong>name: </strong><%= user.google.name %></li>
+              <li><strong>email: </strong><%= user.google.email %></li>
+            </ul>
+            <a href="/connect/unlink/google" class="btn btn-danger">Unlink</a>
+          <% } else { %>
+            <a href="/connect/google" class="btn btn-danger">Connect Google</a>
+          <% } %>
+
+      </div>
+    </section>
+    
+    <footer>
+        <% include partials/footer %>
+    </footer>
+    <% include partials/scripts %>
+   </body>
+</html>

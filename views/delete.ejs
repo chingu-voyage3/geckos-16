@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <% include partials/head %>
+  </head>
+  <body>
+    <header>
+      <% include partials/header %>
+    </header>
+    <section id="delete-meeting">
+      <div class="inner-insert container text-center">
+        <div class="inner container list">
+          <h2><%= meeting.title %></h2>
+          <p>
+            <p><%= meeting.description %></p>
+            <p><%= meeting.location %></p>
+            <p><%= meeting.time %></p>
+          </p>
+          <div>
+            <p>Are you sure you want to delete this meeting?</p>
+            <div class="edit-del">
+              <a href="/meetings/delete/<%= meeting._id %>" class="btn btn-danger" role="button">Delete</a>
+              <a href="<%= meeting.url %>" class="btn btn-secondary" role="button">Cancel</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <footer>
+      <% include partials/footer %>
+    </footer>
+    <% include partials/scripts %>
+  </body>
+</html>
