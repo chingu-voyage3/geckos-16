@@ -1,0 +1,16 @@
+<p>
+  <strong>
+    <%= comment.creator.local.name || comment.creator.google.name || comment.creator.facebook.name %>
+  </strong>
+<p>
+<%= comment.text %>
+<% if (user && (user.id == comment.creator.id)) { %>
+  <div class="edit-del">
+    <a href="/comment/edit-comment/<%= comment.id %>" class="edit">
+      <span class="fa fa-pencil fa-lg" title="Edit comment"></span>
+    </a>
+    <a href="/comment/delete-comment/<%= comment.id %>" class="delete">
+      <span class="fa fa-trash-o fa-lg" title="Delete comment"></span>
+    </a>
+  </div>
+<% } %>

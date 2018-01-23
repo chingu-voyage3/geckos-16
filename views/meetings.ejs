@@ -12,20 +12,38 @@
         <div class="inner container list">
           <h2><%= user.local.name || user.google.name || user.facebook.name || "" %>: Current Meetings</h2>
           <ul class="list-group">
-            <% if (meetings.length > 0) { %>
-              <% meetings.forEach(function(meetings) { %>
+            <% if (my_meetings.length > 0) { %>
+              <% my_meetings.forEach(function(meeting) { %>
                 <li class="list-group-item">
-                  <a href="<%= meetings.url %>" class="text-dark">
-                    <h4><%= meetings.title %></h4>
-                    <p><%= meetings.description %></p>
-                    <p><%= meetings.location %></p>
-                    <p><%= meetings.time %></p>
+                  <a href="<%= meeting.url %>" class="text-dark">
+                    <h4><%= meeting.title %></h4>
+                    <p><%= meeting.description %></p>
+                    <p><%= meeting.location %></p>
+                    <p><%= meeting.time %></p>
                   </a>
                 </li>
               <% }); %>
             <% } else { %>
               <li class="list-group-item">
                 <p>You aren't planning any meetings at the moment.</p>
+              </li>
+            <% } %>
+          </ul>
+          <ul class="list-group">
+            <% if (other_meetings.length > 0) { %>
+              <% other_meetings.forEach(function(meeting) { %>
+                <li class="list-group-item">
+                  <a href="<%= meeting.url %>" class="text-dark">
+                    <h4><%= meeting.title %></h4>
+                    <p><%= meeting.description %></p>
+                    <p><%= meeting.location %></p>
+                    <p><%= meeting.time %></p>
+                  </a>
+                </li>
+              <% }); %>
+            <% } else { %>
+              <li class="list-group-item">
+                <p>You aren't responding to any invitations at the moment.</p>
               </li>
             <% } %>
           </ul>

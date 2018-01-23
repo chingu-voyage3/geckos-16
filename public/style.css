@@ -34,6 +34,9 @@ body {
   padding-bottom: 4rem;
 }
 
+h3 {
+  font-size: 1.5rem;
+}
 
 :root {
   --navFontWeight: 600;
@@ -105,6 +108,3 @@ footer {
   background-color: #272A2D;
   position: absolute;
 }
-
-
-
