@@ -42,26 +42,15 @@ exports.meeting_detail = function(req, res) {
       .exec(callback);
     },
 
-    comments:  function(callback) {
+    comments: function(callback) {
       Comment.find({"meeting": req.params.id})
       .populate("creator")
       .exec(callback);
     },
 
-  }, 
+  },
   function(err, results) {
     if (err) {return next(err);}
-
-    // If the logged in user did not create the meeting
-    // and they are not already in the participants array
-    if ((req.user.id != results.meeting_detail.creator.id) && (!results.meeting_detail.participants.includes(req.user.id))) {
-      // Add user to participants array
-      var meeting = results.meeting_detail;
-      meeting.participants.push(req.user.id);
-      meeting.save((err) => {
-        if (err) {throw err;}
-      }); 
-  }
 
     // Successful, so render
     res.render("meeting-detail", {
