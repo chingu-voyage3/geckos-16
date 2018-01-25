@@ -5,7 +5,7 @@
 <p>
 <%= comment.text %>
 <% if (user && (user.id == comment.creator.id)) { %>
-  <div class="edit-del">
+  <div class="edit-del text-right">
     <a href="/comment/edit-comment/<%= comment.id %>" class="edit">
       <span class="fa fa-pencil fa-lg" title="Edit comment"></span>
     </a>

@@ -94,6 +94,14 @@ h3 {
   padding-right: 1rem;
 }
 
+.edit .fa:before {
+  color: #000;
+}
+
+.delete .fa:before {
+  color: #f00;
+}
+
 .list-group{ 
   padding-bottom: 1rem;
 }
