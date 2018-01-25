@@ -1,0 +1,110 @@
+:root {
+  --htmlFontSize: 100%;
+  --bodyBackgroundColor: #FAFAFA;
+  --bodyColor: var(--baseColor);
+  --bodyFontFamily: Sans-Serif;
+  --bodyFontFamilyFallback: verdana;
+  --bodyFontSize: 1rem;
+  --bodyFontWeight: 400;
+  --bodyLineHeight: 1.5;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+html {
+  box-sizing: border-box;
+  font-size: var(--htmlFontSize);
+  height: 100%;
+}
+
+body {
+  background-color: var(--bodyBackgroundColor);
+  color: var(--bodyColor);
+  font-family: var(--bodyFontFamily), var(--bodyFontFamilyFallback);
+  font-size: var(--bodyFontSize);
+  font-weight: var(--bodyFontWeight);
+  line-height: var(--bodyLineHeight);
+  margin: 0;
+  min-height: 100%;
+  position:relative; 
+  padding-bottom: 4rem;
+}
+
+
+:root {
+  --navFontWeight: 600;
+  --footerColorFont: #eee;
+}
+
+.navigation {
+  background-color: #fff;
+  padding: 0.6rem;
+  border-bottom: 1px solid #EFEFEF;
+  font-weight: var(--navFontWeight);
+}
+
+:root {
+  --backgroundImage: url("https://global-uploads.webflow.com/59b058f08eeafc0001398a66/59b1814f53606e00016b86f0_bg-blue.jpg");
+}
+
+.welcome {
+  background-image: var(--backgroundImage);
+  padding-bottom: 4%;
+}
+
+.home-left {
+  width: 100%;
+}
+
+.gecko-bg {
+  min-width: 20rem;
+  max-width: 50rem;
+}
+
+.home-right {
+  padding: 6rem;
+}
+
+.info {
+  padding: 5rem 0 5rem 0;
+}
+
+.login {
+  padding-top: 1rem;
+  margin: auto;
+  width: 25rem;
+}
+
+.inner {
+  padding-top: 1rem;
+  width: 60%;
+}
+.inner ul {
+    list-style-type: none;
+  }
+
+.edit-del a{
+  padding-right: 1rem;
+}
+
+.list-group{ 
+  padding-bottom: 1rem;
+}
+
+footer {
+  color: var(--footerColorFont);
+  right: 0;
+  bottom: 0;
+  left: 0;
+  padding: 2rem;
+  width: 100%;
+  background-color: #272A2D;
+  position: absolute;
+}
+
+
+

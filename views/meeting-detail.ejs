@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <% include partials/head %>
+  </head>
+  <body>
+    <header>
+      <% include partials/header %>
+    </header>
+
+    <section id="meeting-detail" class="meeting-detail">
+      <div class="inner-insert container text-center">
+        <div class="inner container list">
+
+          <% if (user && (user.id == meeting.creator)) { %>
+
+            <div class="edit-del">
+              <a href="<%= meeting.eurl %>" class="edit"><span class="fa fa-pencil fa-lg" title="Edit meeting"></span></a>
+              <a href="<%= meeting.durl %>" class="delete"><span class="fa fa-trash-o fa-lg" title="Delete meeting"></span></a>
+            </div>
+
+          <% } %>
+
+          <h2><%= meeting.title %></h2>
+          <p>
+            <p><%= meeting.description %></p>
+            <p><%= meeting.location %></p>
+            <p><%= meeting.time %></p>
+          </p>
+
+          <% if (user && (user.id == meeting.creator)) { %>
+
+            <div class="share-link alert alert-info" role="alert">
+              <p><strong>Share this link with friends to invite them to your meeting.</strong></p>
+              <span class="meeting-link"><%= fullUrl %></span>
+            </div>
+
+          <% } %>
+
+          <section id="comments" class="comments text-left">
+            <h3 class="">Comments</h3>
+            <% if (comments) { %>
+              <% comments.forEach(function(comment) { %>
+                
+                <div class="card">
+                  <div class="card-body">
+                    <p><strong><%= comment.creator.local.name || comment.creator.google.name || comment.creator.facebook.name %></strong><p>
+                    <%= comment.text %>
+                  </div>
+                </div>
+              <% }); %>
+            <% } %>
+          </section>
+
+          <% if (user) { %>
+
+            <div class="comment-link text-right">
+              <a class="text-dark" data-toggle="collapse" href="#collapseCommentForm" role="button" aria-expanded="false" aria-controls="collapseCommentForm"><span class="fa fa-comments-o"></span> Add a comment</a>
+            </div>
+
+            <section id="meeting-comment" class="meeting-comment text-dark">
+              <div class="inner-insert container">
+                <div class="inner container list">
+                  <div class="collapse" id="collapseCommentForm">
+                    <form action="/comment/add-comment" method="post">
+                      <div class="form-group row for="comment">Comment:</label>
+                        <textarea type="text" class="form-control" rows="6" name="comment">
+                        </textarea>
+                        <input type="hidden" name="meetingId" value="<%= meeting.id %>">
+                      </div>
+                      <div class="form-group row justify-content-end">
+                        <button type="submit" class="btn btn-success">
+                          Add Comment
+                        </button>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </section>
+
+          <% } %>
+
+          <div class="back">
+            <a href="/meetings" class="text-dark"><span class="fa fa-arrow-left"></span> Back to list</a>
+          </div>
+        </div>
+      </div>
+    </section>
+    <footer>
+      <% include partials/footer %>
+    </footer>
+    <% include partials/scripts %>
+  </body>
+</html>
