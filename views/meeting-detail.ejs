@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <% include partials/head %>
+  </head>
+  <body>
+    <header>
+      <% include partials/header %>
+    </header>
+    <section id="meeting-detail" class="meeting-detail">
+      <div class="inner-insert container text-center">
+        <div class="inner container list">
+
+          <div class="card bg-light meeting-card">
+            <div class="card-head">
+
+              <% if (user && (user.id == meeting.creator.id)) { %>
+
+                <div class="edit-del text-right">
+                  <a href="<%= meeting.eurl %>" class="edit"><span class="fa fa-pencil fa-lg" title="Edit meeting"></span></a>
+                  <a href="<%= meeting.durl %>" class="delete"><span class="fa fa-trash-o fa-lg" title="Delete meeting"></span></a>
+                </div>
+
+              <% } %>
+
+              <h2 class="text-center"><%= meeting.title %></h2>
+              <h3 class="card-subtitle text-muted text-center">
+                created by <%= meeting.creator.local.name || meeting.creator.google.name || meeting.creator.facebook.name %>, on <%= meeting.timestamp_formatted %>
+              </h3>
+            </div>
+            <div class="card-body">
+              <div class="text-left">
+                <p><strong>The plan: </strong><%= meeting.description %></p>
+                <p><strong>Where: </strong><%= meeting.location %></p>
+                <p><strong>When: </strong><%= meeting.time %></p>
+              </div>
+
+              <% if (user && (user.id == meeting.creator.id)) { %>
+
+                <div class="share-link alert alert-info" role="alert">
+                  <p><strong>Share this link with friends to invite them to your meeting.</strong></p>
+                  <span class="meeting-link"><%= fullUrl %></span>
+                </div>
+
+              <% } %>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <section id="participants" class="participants">
+      <div class="inner-insert container">
+        <div class="inner container list">
+
+          <% if (meeting.participants.length > 0) { %>
+            <h3 class="text-muted">Participants</h3>
+            <% meeting.participants.forEach(function(participant) { %>
+              <p><%= participant.local.name || participant.google.name || participant.facebook.name %></p>
+            <% }); %>
+          <% } %>
+
+        </div>
+      </div>
+    </section>
+
+    <section id="comments" class="comments text-left">
+      <div class="inner-insert container">
+        <div class="inner container list">
+          <% if (comments.length > 0) { %>
+            <h3 class="text-muted">Comments</h3>
+
+            <% comments.forEach(function(comment) { %>
+              
+              <div class="card">
+                <div class="card-body">
+                  <% if (comment.status == "edit") { %>
+                    <% include partials/comment-edit %>
+                  <% } else if (comment.status == "deleted") { %>
+                    <% include partials/comment-deleted %>
+                  <% } else { %>
+                    <% include partials/comment %>
+                  <% } %>
+                </div>
+              </div>
+            <% }); %>
+          <% } %>
+
+          <% if (user) { %>
+
+            <div class="comment-link text-right pb-5">
+              <a class="text-dark" data-toggle="collapse" href="#collapseCommentForm" role="button" aria-expanded="false" aria-controls="collapseCommentForm"><span class="fa fa-comments-o"></span> Add a comment</a>
+            </div>
+
+            <section id="meeting-comment" class="meeting-comment text-dark">
+              
+                  <div class="collapse" id="collapseCommentForm">
+                    <form action="/comment/add-comment" method="post">
+                      <div class="form-group row justify-content-center">
+                        <label for="comment" class="col-sm-10">Add your comment</label>
+                        <textarea type="text" class="form-control input-lg col-sm-10" rows="6" name="comment" id="comment"></textarea>
+                        <input type="hidden" name="meetingId" value="<%= meeting.id %>">
+                      </div>
+                      <div class="form-group row justify-content-end">
+                        <button type="submit" class="btn btn-success">
+                          Add Comment
+                        </button>
+                      </div>
+                    </form>
+                  </div>
+              
+            </section>
+
+          <% } %>
+
+        </div>
+      </div>
+    </section>
+    <footer>
+      <% include partials/footer %>
+    </footer>
+    <% include partials/scripts %>
+  </body>
+</html>
